@@ -1,0 +1,67 @@
+﻿@model List<Item>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alışveriş Sepeti</title>
+    <link href="#" rel="wwwroot/css/Payment.css" />
+    <style>
+        /* CSS stilleri burada kalabilir */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cart">
+            <h2>Alışveriş Sepeti</h2>
+            <div id="cart-items">
+                @foreach (var item in Model)
+                {
+                    <div class="item" data-id="@item.Id">
+                        <div class="item-info">
+                            <img src="@item.Image" alt="@item.Name" class="item-image">
+                            <span>@item.Name (@item.Price TL)</span>
+                        </div>
+                        <div class="quantity-control">
+                            @if (item.Name == "Bilet")
+                            {
+                                <span>@item.Quantity</span>
+                            }
+                            else
+                            {
+                                <button data-id="@item.Id" class="decrease">-</button>
+                                <span>@item.Quantity</span>
+                                <button data-id="@item.Id" class="increase">+</button>
+                            }
+                            <span>@(item.Price * item.Quantity) TL</span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="total">Toplam: <span id="total-amount">@Model.Sum(i => i.Price * i.Quantity)</span> TL</div>
+        </div>
+        <div class="payment">
+            <h2>Ödeme Bilgileri</h2>
+            <div id="payment-error" class="error">
+                Ödeme Başarısız. Lütfen bilgilerinizi kontrol edip tekrar deneyiniz.
+            </div>
+            <div class="credit-card">
+                <div class="card-number">**** **** **** ****</div>
+                <div class="card-name">AD SOYAD</div>
+                <div class="card-expiry">AY/YIL</div>
+                <div class="card-cvv">CVV</div>
+            </div>
+            <form id="payment-form">
+                <input type="text" id="card-name-input" placeholder="Kart Üzerindeki İsim" required>
+                <input type="text" id="card-number-input" placeholder="Kart Numarası" required maxlength="16">
+                <div class="card-details">
+                    <input type="text" id="card-expiry-input" placeholder="Son Kullanma Tarihi (AA/YY)" required maxlength="5">
+                    <input type="text" id="card-cvv-input" placeholder="CVV" required maxlength="3">
+                </div>
+                <button type="submit">Öde</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
