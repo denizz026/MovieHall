@@ -1,8 +1,68 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "MovieHall";
+    var vizyondakiler = ViewData["Vizyondakiler"] as List<MovieHall.Models.Movie>;
+    var vizyonaGirecekler = ViewData["VizyonaGirecekler"] as List<MovieHall.Models.UpcomingMovie>;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="logo">MovieHall</div>
+                <ul class="main-nav">
+                    <li><a href="#vizyondakiler">Vizyondakiler</a></li>
+                    <li><a href="#vizyona-girecekler">Vizyona Girecekler</a></li>
+                </ul>
+            </div>
+            <ul class="auth-nav">
+                <li><a href="#">Giriş Yap</a></li>
+                <li><a href="#">Kayıt Ol</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="vizyondakiler">
+            <h2>Vizyondakiler</h2>
+            <div class="movie-grid">
+                @foreach (var movie in vizyondakiler)
+                {
+                    <div class="movie-card">
+                        <img src="@movie.ImageUrl" alt="@movie.Title" />
+                        <div class="movie-info">
+                            <div class="movie-title">@movie.Title</div>
+                            <div class="movie-rating">IMDb: @movie.Imdb</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section id="vizyona-girecekler">
+            <h2>Vizyona Girecekler</h2>
+            <div class="movie-grid">
+                @foreach (var movie in vizyonaGirecekler)
+                {
+                    <div class="movie-card">
+                        <img src="@movie.ImageUrl" alt="@movie.Title" />
+                        <div class="movie-info">
+                            <div class="movie-title">@movie.Title</div>
+                            <div class="movie-date">Çıkış Tarihi: @movie.ReleaseDate.ToString("yyyy-MM-dd")</div>
+                            <div class="movie-rating">IMDb: @movie.Imdb</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
+    <script src="~/js/script.js"></script>
+</body>
+</html>

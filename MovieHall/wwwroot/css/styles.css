@@ -1,0 +1,135 @@
+﻿/* Genel Stil Ayarları */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #141414;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Header ve Navbar */
+header {
+    background-color: #000000;
+    padding: 1rem 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #e50914;
+}
+
+.main-nav,
+.auth-nav {
+    margin: auto;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.auth-nav {
+    margin-left: 36rem;
+}
+
+nav ul li a {
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+    nav ul li a:hover {
+        color: #e50914;
+    }
+
+/* Ana İçerik Alanı */
+main {
+    padding: 2rem;
+}
+
+h2 {
+    margin: 1rem;
+}
+
+/* Film Kartları */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.movie-card {
+    background-color: #2f2f2f;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    max-width: 100%;
+}
+
+    .movie-card:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    .movie-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+.movie-info {
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.movie-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.movie-rating {
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 1200px) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-grid {
+        grid-template-columns: 1fr;
+    }
+}

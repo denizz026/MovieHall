@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using MovieHall.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add EF Core and configure the database connection
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") + ";TrustServerCertificate=True"));
+
 
 var app = builder.Build();
 
